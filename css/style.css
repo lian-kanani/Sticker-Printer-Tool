@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+
+@page {
+    size: A4 portrait;
+    margin: 0; 
+}
+
+* { 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #d1d5db;
+    margin: 0;
+    padding: 20px;
+    color: #1f2937;
+}
+
+/* Toolbar Container */
+.toolbar {
+    max-width: 250mm;
+    margin: 0 auto 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    border-top: 5px solid #2563eb;
+}
+
+.toolbar h2 { 
+    margin: 0 0 15px 0; 
+    color: #1e3a8a; 
+    text-align: center; 
+}
+
+.section-title {
+    background: #1e3a8a;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* Measurements Panel */
+.measurements-panel {
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px 30px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.mb-2 {
+    margin-bottom: 10px;
+}
+
+.m-group { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.m-group label { 
+    font-weight: bold; 
+    color: #333; 
+}
+
+.input-with-unit { 
+    display: flex; 
+    align-items: center; 
+    background: white; 
+    border: 1px solid #aaa; 
+    padding: 2px; 
+    border-radius: 3px; 
+}
+
+.input-with-unit input { 
+    width: 60px; 
+    border: none; 
+    outline: none; 
+    text-align: center; 
+    font-weight: bold; 
+}
+
+.input-with-unit span { 
+    padding: 0 5px; 
+    color: #555; 
+    font-size: 12px; 
+}
+
+.page-measurements {
+    grid-column: 1 / -1; 
+    border-top: 1px solid #ccc; 
+    padding-top: 10px; 
+    display: flex; 
+    justify-content: space-between;
+}
+
+/* Skip Labels Section */
+.skip-section {
+    background: #fffbeb; 
+    padding: 15px; 
+    border: 1px solid #fde68a; 
+    border-radius: 6px; 
+    margin-bottom: 20px;
+}
+
+.skip-label {
+    font-weight: bold; 
+    color: #92400e;
+}
+
+.skip-input {
+    width: 80px; 
+    margin-right: 10px;
+}
+
+.skip-note {
+    font-size: 13px; 
+    margin: 5px 0 0 0; 
+    color: #b45309;
+}
+
+/* Excel Upload Section */
+.excel-section {
+    margin-bottom: 20px; 
+    padding: 10px; 
+    background: #ecfdf5; 
+    border: 1px solid #a7f3d0; 
+    border-radius: 6px;
+}
+
+.excel-label {
+    font-size: 13px; 
+    margin-right: 10px;
+}
+
+/* Input Table */
+table.input-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-bottom: 15px; 
+    background: white; 
+}
+
+table.input-table th, table.input-table td { 
+    border: 1px solid #d1d5db; 
+    padding: 6px; 
+    text-align: center; 
+    font-size: 14px; 
+}
+
+table.input-table th { 
+    background-color: #eff6ff; 
+    color: #1e3a8a;
+}
+
+input[type="text"], input[type="number"], select {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Tajawal', sans-serif;
+}
+
+/* Action Buttons */
+.btn {
+    color: white; 
+    border: none; 
+    padding: 8px 16px; 
+    font-size: 14px;
+    font-weight: bold; 
+    font-family: 'Tajawal', sans-serif; 
+    border-radius: 6px;
+    cursor: pointer; 
+    transition: all 0.2s; 
+    background-color: #4b5563;
+}
+
+.btn:hover { 
+    filter: brightness(90%); 
+}
+
+.btn-danger { 
+    background-color: #ef4444; 
+    padding: 6px 12px;
+}
+
+.btn-add {
+    background-color: #6b7280;
+}
+
+.action-buttons { 
+    display: flex; 
+    gap: 15px; 
+    margin-top: 20px; 
+}
+
+.btn-preview { 
+    background-color: #3b82f6; 
+    flex: 1; 
+    font-size: 18px; 
+    padding: 15px; 
+}
+
+.btn-print { 
+    background-color: #10b981; 
+    flex: 1; 
+    font-size: 18px; 
+    padding: 15px; 
+    display: none; 
+}
+
+/* Print Container & A4 Sheets */
+#print-container { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.a4-sheet {
+    background: white; 
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    direction: ltr; /* Main direction for grid layout */
+    page-break-after: always; 
+    overflow: hidden;
+}
+
+.label-box {
+    direction: rtl; /* RTL direction for Arabic text inside the label */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center; 
+    border: 0.5px dashed #ccc; 
+    border-radius: 2mm; 
+    padding: 1mm; 
+    overflow: hidden;
+}
+
+.label-name { 
+    font-weight: bold; 
+    color: #000; 
+    line-height: 1.1; 
+    max-height: 70%; 
+    overflow: hidden; 
+}
+
+.label-price {
+    font-weight: 900; 
+    color: #000; 
+    margin-top: 0.5mm;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 5px; /* The gap between the price and the currency */
+    direction: ltr; /* Ensure numbers and symbols align correctly */
+}
+
+/* Print Specific Rules */
+@media print {
+    body { background: none; padding: 0; }
+    .toolbar { display: none !important; }
+    .a4-sheet { box-shadow: none; margin: 0; }
+    .label-box { border: none; } 
+}

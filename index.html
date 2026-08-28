@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticker Printer Tool</title>
+    
+    <!-- XLSX Library for reading Excel files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <!-- External stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="toolbar">
+    <h2>أداة طباعة الملصقات</h2>
+    
+    <!-- Measurements Panel -->
+    <div class="section-title">إعدادات التخطيط</div>
+    <div class="measurements-panel">
+        <div>
+            <div class="m-group mb-2"><label>الهامش العلوي:</label><div class="input-with-unit"><input type="number" id="marginTop" value="1" step="0.1"><span>سم</span></div></div>
+            <div class="m-group mb-2"><label>الهامش الجانبي (يسار):</label><div class="input-with-unit"><input type="number" id="marginLeft" value="0.5" step="0.1"><span>سم</span></div></div>
+            <div class="m-group mb-2"><label>خطوة عمودية:</label><div class="input-with-unit"><input type="number" id="vStep" value="1.75" step="0.1"><span>سم</span></div></div>
+            <div class="m-group"><label>خطوة أفقية:</label><div class="input-with-unit"><input type="number" id="hStep" value="2.5" step="0.1"><span>سم</span></div></div>
+        </div>
+        <div>
+            <div class="m-group mb-2"><label>ارتفاع التسمية:</label><div class="input-with-unit"><input type="number" id="labelHeight" value="1.55" step="0.1"><span>سم</span></div></div>
+            <div class="m-group mb-2"><label>عرض التسمية:</label><div class="input-with-unit"><input type="number" id="labelWidth" value="2.2" step="0.1"><span>سم</span></div></div>
+            <div class="m-group mb-2"><label>عدد البطاقات عرضاً:</label><div class="input-with-unit"><input type="number" id="cols" value="8"><span>قطعة</span></div></div>
+            <div class="m-group"><label>عدد البطاقات طولاً:</label><div class="input-with-unit"><input type="number" id="rows" value="16"><span>قطعة</span></div></div>
+        </div>
+        <div class="page-measurements">
+            <div class="m-group" style="width: 48%;"><label>عرض الصفحة:</label><div class="input-with-unit"><input type="number" id="pageWidth" value="21" step="0.1"><span>سم</span></div></div>
+            <div class="m-group" style="width: 48%;"><label>ارتفاع الصفحة:</label><div class="input-with-unit"><input type="number" id="pageHeight" value="29.97" step="0.1"><span>سم</span></div></div>
+        </div>
+    </div>
+
+    <!-- Skip Used Labels -->
+    <div class="section-title">تخطي ملصقات مستعملة</div>
+    <div class="skip-section">
+        <label class="skip-label">
+            عدد الملصقات المنزوعة من الورقة الأولى:
+            <input type="number" id="skipLabels" value="0" min="0" class="skip-input">
+        </label>
+        <p class="skip-note">(سيترك البرنامج هذا العدد من الفراغات في البداية ليكمل الطباعة على الملصقات المتبقية)</p>
+    </div>
+
+    <!-- Import Data from Excel -->
+    <div class="section-title" style="background: #047857;">استيراد البيانات من إكسل</div>
+    <div class="excel-section">
+        <input type="file" id="excelUpload" accept=".xlsx, .xls">
+        <label class="excel-label"><input type="checkbox" id="hasHeaders" checked> تجاهل الصف الأول (العناوين)</label>
+    </div>
+
+    <!-- Input Table -->
+    <div class="section-title">الإدخال وقائمة الطباعة</div>
+    <table class="input-table" id="itemsTable">
+        <thead>
+            <tr>
+                <th style="width: 25%;">اسم المادة</th>
+                <th style="width: 10%;">خط الاسم</th>
+                <th style="width: 18%;">السعر</th>
+                <th style="width: 12%;">الواحدة</th>
+                <th style="width: 10%;">خط السعر</th>
+                <th style="width: 10%;">الكمية</th>
+                <th style="width: 10%;">إجراء</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" class="item-name" placeholder="قلم أزرق" style="width: 100%;"></td>
+                <td><input type="number" class="item-name-font" value="10" step="0.5" style="width: 100%; text-align: center;"></td>
+                <td><input type="text" class="item-price" placeholder="5000" style="width: 100%;"></td>
+                <td>
+                    <select class="item-currency" style="width: 100%;">
+                        <option value="$" selected>$</option>
+                        <option value="SP">SP</option>
+                    </select>
+                </td>
+                <td><input type="number" class="item-price-font" value="10" step="0.5" style="width: 100%; text-align: center;"></td>
+                <td><input type="number" class="item-qty" value="5" min="1" style="width: 100%; text-align: center;"></td>
+                <td><button class="btn btn-danger" onclick="removeRow(this)">حذف</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-add" onclick="addRow()">إضافة سطر جديد</button>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="btn btn-preview" onclick="generatePreview()">معاينة (توليد الصفحات)</button>
+        <button class="btn btn-print" id="printBtn">طباعة الآن</button>
+    </div>
+</div>
+
+<!-- Print Container -->
+<div id="print-container"></div>
+
+<!-- External Script -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
