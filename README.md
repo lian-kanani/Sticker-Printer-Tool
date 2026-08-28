@@ -4,7 +4,7 @@ A fully customizable web-based application designed to precisely generate and pr
 
 ---
 
-**page link:** ([apple id generator](https://lian-kanani.github.io/Sticker-Printer-Tool/))
+**page link:** ([Sticker Printer Tool](https://lian-kanani.github.io/Sticker-Printer-Tool/))
 
 ## Features
 * **Precise Measurements:** Custom inputs for top/left margins, label height/width, and vertical/horizontal steps (in centimeters) to fit perfectly with any pre-cut sticker sheet.
